@@ -1,0 +1,148 @@
+@import "~normalize.css";
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.invisible {
+    display: none;
+}
+
+
+/*  header  */
+.header {
+    background-color: rgb(226, 226, 226);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    border-bottom: 2px solid rgb(71, 71, 71);
+}
+
+.logo {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    font-size: 50px;
+    color: rgb(251, 251, 251);
+    -webkit-text-stroke: 2px rgb(0, 0, 0);
+}
+
+.search-button {
+    cursor: pointer
+}
+
+.cart-button {
+    width: 100px;
+    cursor: pointer
+}
+
+.cart-area {
+    position: relative;
+}
+
+.cart {
+    position: absolute;
+    right: 0%;
+    background-color: #fff;
+    
+}
+
+.invisible {
+    display: none;
+}
+
+.cart-item {
+    width: 300px;
+    height: 100px;
+    overflow: hidden;
+    border: 1px solid black;
+    background-color: #fff;
+}
+
+.cart-item__img {
+    width: 100px;
+    height: 100px;
+    background-color: #4ac;
+    float: left;
+}
+
+.cart-item__info {
+    height: inherit;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    padding: 5px 10px;
+    font-size: 10px;
+}
+
+.cart-item__product-price {
+    font-size: 16px;
+}
+
+.remove-button {
+    width: 100px;
+}
+
+/*  end header  */
+
+
+
+
+.products {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+/* products_list */
+
+.product_item {
+    width: 200px;
+    height: 350px;
+    border: 1px solid black;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    padding-bottom: 10px;
+    margin: 30px 30px;
+}
+
+.product-img {
+    background-color: #4aa;
+    height: 180px;
+    width: 180px;
+    text-align: center;
+    overflow: hidden
+}
+
+.product-img > img {
+    width: 100%;
+}
+
+.product-name {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.buy-button {
+    cursor: pointer;
+}
+
+
+/* products_list */
