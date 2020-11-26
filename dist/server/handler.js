@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -94,17 +94,6 @@
 /***/ (function(module, exports) {
 
 eval("var add = function add(cart, req) {\n  cart.contents.push(req.body);\n  return {\n    newCart: JSON.stringify(cart, null, 4),\n    name: req.body.product_name\n  };\n};\n\nvar change = function change(cart, req) {\n  var find = cart.contents.find(function (el) {\n    return el.id_product === +req.params.id;\n  });\n  find.quantity += req.body.quantity;\n  find.sum += find.price * req.body.quantity;\n  return {\n    newCart: JSON.stringify(cart, null, 4),\n    name: find.product_name\n  };\n};\n\nvar remove = function remove(cart, req) {\n  var find = cart.contents.find(function (el) {\n    return el.id_product === +req.params.id;\n  });\n  cart.contents.splice(cart.contents.indexOf(find), 1);\n  return {\n    newCart: JSON.stringify(cart, null, 4),\n    name: find.product_name\n  };\n};\n\nmodule.exports = {\n  add: add,\n  change: change,\n  remove: remove\n};\n\n//# sourceURL=webpack:///./cart.js?");
-
-/***/ }),
-
-/***/ "./cartRouter.js":
-/*!***********************!*\
-  !*** ./cartRouter.js ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var express = __webpack_require__(/*! express */ \"express\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar handler = __webpack_require__(/*! ./handler */ \"./handler.js\");\n\nvar router = express.Router();\nrouter.get('/', function (req, res) {\n  fs.readFile('server/db/userCart.json', 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      res.send(data);\n    }\n  });\n});\nrouter.post('/', function (req, res) {\n  handler(req, res, 'add', 'server/db/userCart.json');\n});\nrouter.put('/:id', function (req, res) {\n  handler(req, res, 'change', 'server/db/userCart.json');\n});\nrouter.delete('/:id', function (req, res) {\n  handler(req, res, 'remove', 'server/db/userCart.json');\n});\nmodule.exports = router;\n\n//# sourceURL=webpack:///./cartRouter.js?");
 
 /***/ }),
 
@@ -130,25 +119,14 @@ eval("var moment = __webpack_require__(/*! moment */ \"moment\");\n\nvar fs = __
 
 /***/ }),
 
-/***/ "./server.js":
-/*!*******************!*\
-  !*** ./server.js ***!
-  \*******************/
+/***/ 2:
+/*!******************************************!*\
+  !*** multi @babel/polyfill ./handler.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var _this = this;\n\nvar express = __webpack_require__(/*! express */ \"express\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar cart = __webpack_require__(/*! ./cartRouter */ \"./cartRouter.js\");\n\nvar app = express(); // const port = 1000\n\napp.use(express.json());\napp.use('/', express.static('public'));\napp.use('/api/cart', cart);\napp.get('/api/products', function (req, res) {\n  fs.readFile('server/db/products.json', 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      res.send(data);\n    }\n  });\n});\napp.listen(port, function () {\n  return console.log('server is running on port', _this.address().port);\n});\n\n//# sourceURL=webpack:///./server.js?");
-
-/***/ }),
-
-/***/ 4:
-/*!*****************************************!*\
-  !*** multi @babel/polyfill ./server.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("__webpack_require__(/*! @babel/polyfill */\"@babel/polyfill\");\nmodule.exports = __webpack_require__(/*! ./server.js */\"./server.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./server.js?");
+eval("__webpack_require__(/*! @babel/polyfill */\"@babel/polyfill\");\nmodule.exports = __webpack_require__(/*! ./handler.js */\"./handler.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./handler.js?");
 
 /***/ }),
 
@@ -160,17 +138,6 @@ eval("__webpack_require__(/*! @babel/polyfill */\"@babel/polyfill\");\nmodule.ex
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"@babel/polyfill\");\n\n//# sourceURL=webpack:///external_%22@babel/polyfill%22?");
-
-/***/ }),
-
-/***/ "express":
-/*!**************************!*\
-  !*** external "express" ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
 
 /***/ }),
 

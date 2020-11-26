@@ -1,7 +1,9 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin')
 
 
 
@@ -13,28 +15,43 @@ module.exports = {
 
 
   entry: {
-    main: [
-            '@babel/polyfill',
-            './server.js'
-          ]
+    cart: [
+      '@babel/polyfill',
+      './cart.js'
+    ],
+    cartRouter: [
+      '@babel/polyfill',
+      './cartRouter.js'
+    ],
+    handler: [
+      '@babel/polyfill',
+      './handler.js'
+    ],
+    logger: [
+      '@babel/polyfill',
+      './logger.js'
+    ],
+    server: [
+      '@babel/polyfill',
+      './server.js'
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'dist/server/'),
-    filename: 'server.js'
+    filename: '[name].js'
   },
 
   target: 'node',
-  externals: [ nodeExternals() ],  // for express
+  externals: [nodeExternals()], // for express
 
   devServer: {
-    port: 9000,
+    port: 1000,
     hot: true
   },
 
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js/,
         exclude: /node_modules/,
         use: [{
@@ -52,7 +69,7 @@ module.exports = {
 
 
   plugins: [
-    
+
     new CopyWebpackPlugin({
       patterns: [{
         from: path.resolve(__dirname, 'src/server/db/'),
@@ -63,4 +80,3 @@ module.exports = {
     new CleanWebpackPlugin()
   ]
 }
-

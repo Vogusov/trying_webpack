@@ -6,7 +6,7 @@
   "scripts": {
     "pub": "webpack --mode development --config webpack.dev.config.js",
     "serv": "webpack --mode development --config webpack.server.config.js",
-    "start": "webpack-dev-server --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js --open",
+    "start": "webpack-dev-server --mode development --config webpack.dev.config.js && webpack --mode development --config webpack.dev.config.js --open",    
     "dev": "webpack --mode development --config webpack.server.config.js && webpack --mode development --config webpack.dev.config.js",
     "runserv": "nodemon dist/server/server.js"
   },

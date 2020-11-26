@@ -81,43 +81,10 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./cart.js":
-/*!*****************!*\
-  !*** ./cart.js ***!
-  \*****************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("var add = function add(cart, req) {\n  cart.contents.push(req.body);\n  return {\n    newCart: JSON.stringify(cart, null, 4),\n    name: req.body.product_name\n  };\n};\n\nvar change = function change(cart, req) {\n  var find = cart.contents.find(function (el) {\n    return el.id_product === +req.params.id;\n  });\n  find.quantity += req.body.quantity;\n  find.sum += find.price * req.body.quantity;\n  return {\n    newCart: JSON.stringify(cart, null, 4),\n    name: find.product_name\n  };\n};\n\nvar remove = function remove(cart, req) {\n  var find = cart.contents.find(function (el) {\n    return el.id_product === +req.params.id;\n  });\n  cart.contents.splice(cart.contents.indexOf(find), 1);\n  return {\n    newCart: JSON.stringify(cart, null, 4),\n    name: find.product_name\n  };\n};\n\nmodule.exports = {\n  add: add,\n  change: change,\n  remove: remove\n};\n\n//# sourceURL=webpack:///./cart.js?");
-
-/***/ }),
-
-/***/ "./cartRouter.js":
-/*!***********************!*\
-  !*** ./cartRouter.js ***!
-  \***********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var express = __webpack_require__(/*! express */ \"express\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar handler = __webpack_require__(/*! ./handler */ \"./handler.js\");\n\nvar router = express.Router();\nrouter.get('/', function (req, res) {\n  fs.readFile('server/db/userCart.json', 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      res.send(data);\n    }\n  });\n});\nrouter.post('/', function (req, res) {\n  handler(req, res, 'add', 'server/db/userCart.json');\n});\nrouter.put('/:id', function (req, res) {\n  handler(req, res, 'change', 'server/db/userCart.json');\n});\nrouter.delete('/:id', function (req, res) {\n  handler(req, res, 'remove', 'server/db/userCart.json');\n});\nmodule.exports = router;\n\n//# sourceURL=webpack:///./cartRouter.js?");
-
-/***/ }),
-
-/***/ "./handler.js":
-/*!********************!*\
-  !*** ./handler.js ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var cart = __webpack_require__(/*! ./cart */ \"./cart.js\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar logger = __webpack_require__(/*! ./logger */ \"./logger.js\");\n\nvar actions = {\n  add: cart.add,\n  change: cart.change,\n  remove: cart.remove\n};\n\nvar handler = function handler(req, res, action, file) {\n  fs.readFile(file, 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      var _actions$action = actions[action](JSON.parse(data), req),\n          newCart = _actions$action.newCart,\n          name = _actions$action.name;\n\n      fs.writeFile(file, newCart, function (err) {\n        if (err) {\n          res.sendStatus(404, JSON.stringify({\n            result: 0,\n            text: err\n          }));\n        } else {\n          logger(name, action);\n          res.send({\n            result: 1,\n            text: \"\".concat(action, \" success\")\n          });\n        }\n      });\n    }\n  });\n};\n\nmodule.exports = handler;\n\n//# sourceURL=webpack:///./handler.js?");
-
-/***/ }),
 
 /***/ "./logger.js":
 /*!*******************!*\
@@ -130,25 +97,14 @@ eval("var moment = __webpack_require__(/*! moment */ \"moment\");\n\nvar fs = __
 
 /***/ }),
 
-/***/ "./server.js":
-/*!*******************!*\
-  !*** ./server.js ***!
-  \*******************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var _this = this;\n\nvar express = __webpack_require__(/*! express */ \"express\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar cart = __webpack_require__(/*! ./cartRouter */ \"./cartRouter.js\");\n\nvar app = express(); // const port = 1000\n\napp.use(express.json());\napp.use('/', express.static('public'));\napp.use('/api/cart', cart);\napp.get('/api/products', function (req, res) {\n  fs.readFile('server/db/products.json', 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      res.send(data);\n    }\n  });\n});\napp.listen(port, function () {\n  return console.log('server is running on port', _this.address().port);\n});\n\n//# sourceURL=webpack:///./server.js?");
-
-/***/ }),
-
-/***/ 4:
+/***/ 3:
 /*!*****************************************!*\
-  !*** multi @babel/polyfill ./server.js ***!
+  !*** multi @babel/polyfill ./logger.js ***!
   \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! @babel/polyfill */\"@babel/polyfill\");\nmodule.exports = __webpack_require__(/*! ./server.js */\"./server.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./server.js?");
+eval("__webpack_require__(/*! @babel/polyfill */\"@babel/polyfill\");\nmodule.exports = __webpack_require__(/*! ./logger.js */\"./logger.js\");\n\n\n//# sourceURL=webpack:///multi_@babel/polyfill_./logger.js?");
 
 /***/ }),
 
@@ -160,17 +116,6 @@ eval("__webpack_require__(/*! @babel/polyfill */\"@babel/polyfill\");\nmodule.ex
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"@babel/polyfill\");\n\n//# sourceURL=webpack:///external_%22@babel/polyfill%22?");
-
-/***/ }),
-
-/***/ "express":
-/*!**************************!*\
-  !*** external "express" ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
 
 /***/ }),
 

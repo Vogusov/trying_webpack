@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist/public/'),
-    filename: 'js/[name].js'
+    filename: 'js/index.js'
   },
 
   resolve: {
@@ -31,7 +31,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 9000,
+    port: 1000,
     hot: true
   },
 
@@ -72,7 +72,7 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: './index.html',
-      title: 'Development'
+      excludeChunks: ['server']
     }),
 
     new MiniCssExtractPlugin(),
