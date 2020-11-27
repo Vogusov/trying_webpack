@@ -6,39 +6,20 @@ const {
 } = require('clean-webpack-plugin')
 
 
-
-
-
 module.exports = {
   context: path.resolve(__dirname, 'src/server/'),
   mode: 'development',
 
 
   entry: {
-    cart: [
-      '@babel/polyfill',
-      './cart.js'
-    ],
-    cartRouter: [
-      '@babel/polyfill',
-      './cartRouter.js'
-    ],
-    handler: [
-      '@babel/polyfill',
-      './handler.js'
-    ],
-    logger: [
-      '@babel/polyfill',
-      './logger.js'
-    ],
-    server: [
-      '@babel/polyfill',
-      './server.js'
-    ]
+    main: [
+            '@babel/polyfill',
+            './server.js'
+          ]
   },
   output: {
     path: path.resolve(__dirname, 'dist/server/'),
-    filename: '[name].js'
+    filename: 'server.js'
   },
 
   target: 'node',
@@ -46,7 +27,8 @@ module.exports = {
 
   devServer: {
     port: 1000,
-    hot: true
+    hot: false,
+    open: true
   },
 
 

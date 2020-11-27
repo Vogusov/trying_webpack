@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -141,7 +141,7 @@ eval("var _this = this;\n\nvar express = __webpack_require__(/*! express */ \"ex
 
 /***/ }),
 
-/***/ 4:
+/***/ 0:
 /*!*****************************************!*\
   !*** multi @babel/polyfill ./server.js ***!
   \*****************************************/
