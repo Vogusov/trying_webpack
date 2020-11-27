@@ -2,7 +2,9 @@ const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin')
 
 
 
@@ -14,10 +16,10 @@ module.exports = {
 
   entry: {
     main: [
-            '@babel/polyfill',
-            'whatwg-fetch',
-            './index.js'
-          ]
+      '@babel/polyfill',
+      'whatwg-fetch',
+      './index.js'
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'dist/public/'),
@@ -31,7 +33,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 1000,
+    port: 4200,
     hot: true
   },
 
@@ -41,10 +43,9 @@ module.exports = {
 
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.css$/,
-        use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(png|jpe?g|svg|gif)$/,
@@ -78,13 +79,18 @@ module.exports = {
     new MiniCssExtractPlugin(),
 
     new CopyWebpackPlugin({
-      patterns: [{
-        from: path.resolve(__dirname, 'src/public/images/'),
-        to: path.resolve(__dirname, 'dist/public/images')
-      }]
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/public/images/'),
+          to: path.resolve(__dirname, 'dist/public/images')
+        },
+        {
+          from: path.resolve(__dirname, 'src/favicon.ico'),
+          to: path.resolve(__dirname, 'dist')
+        }
+      ]
     }),
 
     new CleanWebpackPlugin()
   ]
 }
-

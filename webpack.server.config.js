@@ -26,7 +26,7 @@ module.exports = {
   externals: [nodeExternals()], // for express
 
   devServer: {
-    port: 1000,
+    port: 4200,
     hot: false,
     open: true
   },

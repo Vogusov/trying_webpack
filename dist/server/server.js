@@ -137,7 +137,7 @@ eval("var moment = __webpack_require__(/*! moment */ \"moment\");\n\nvar fs = __
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("var _this = this;\n\nvar express = __webpack_require__(/*! express */ \"express\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar cart = __webpack_require__(/*! ./cartRouter */ \"./cartRouter.js\");\n\nvar app = express(); // const port = 1000\n\napp.use(express.json());\napp.use('/', express.static('public'));\napp.use('/api/cart', cart);\napp.get('/api/products', function (req, res) {\n  fs.readFile('server/db/products.json', 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      res.send(data);\n    }\n  });\n});\napp.listen(port, function () {\n  return console.log('server is running on port', _this.address().port);\n});\n\n//# sourceURL=webpack:///./server.js?");
+eval("var express = __webpack_require__(/*! express */ \"express\");\n\nvar fs = __webpack_require__(/*! fs */ \"fs\");\n\nvar cart = __webpack_require__(/*! ./cartRouter */ \"./cartRouter.js\");\n\nvar app = express();\nvar port = 1000;\napp.use(express.json());\napp.use('/', express.static('public'));\napp.use('/api/cart', cart);\napp.get('/api/products', function (req, res) {\n  fs.readFile('server/db/products.json', 'utf-8', function (err, data) {\n    if (err) {\n      res.sendStatus(404, JSON.stringify({\n        result: 0,\n        text: err\n      }));\n    } else {\n      res.send(data);\n    }\n  });\n});\napp.listen(port, function () {\n  return console.log('server is running on port', port);\n});\n\n//# sourceURL=webpack:///./server.js?");
 
 /***/ }),
 

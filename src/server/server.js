@@ -3,7 +3,7 @@ const fs = require('fs')
 const cart = require('./cartRouter')
 
 const app = express()
-// const port = 1000
+const port = 1000
 
 
 app.use(express.json())
@@ -21,4 +21,4 @@ app.get('/api/products', (req, res) => {
 }) 
 
 
-app.listen(port, () => console.log('server is running on port', this.address().port))
+app.listen(port, () => console.log('server is running on port', port))
